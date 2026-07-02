@@ -46,11 +46,11 @@ if (isProduction) {
   const buildPath = path.join(__dirname, "../frontend/build");
   app.use(express.static(buildPath));
 
-  app.get("*", (req, res) => {
-    if (req.path.startsWith("/api")) {
-      return res.status(404).json({ message: "API route not found" });
+  app.get('/*', (req, res) => {
+    if (req.path.startsWith('/api')) {
+      return res.status(404).json({ message: 'API route not found' });
     }
-    res.sendFile(path.join(buildPath, "index.html"));
+    res.sendFile(path.join(buildPath, 'index.html'));
   });
 } else {
   app.get("/", (req, res) => {
